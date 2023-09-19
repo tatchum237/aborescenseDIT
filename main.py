@@ -47,5 +47,24 @@ class Dossier_Fichier:
             print(f"Une erreur inattendue s'est produite : {e}")
     
 
+    def create_git_commit(self, commit_message):
+        try:
+        # Vérifier si Git est installé et accessible
+            subprocess.run(["git", "--version"], check=True, cwd=self.project_root)
 
+        # Ajouter tous les fichiers modifiés à l'index
+            subprocess.run(["git", "add", "."], check=True, cwd=self.project_root)
+
+        # Créer un commit avec le message spécifié
+            subprocess.run(["git", "commit", "-m", commit_message], check=True, cwd=self.project_root)
+            print(f"Commit créé avec succès avec le message : '{commit_message}'.")
+
+        except FileNotFoundError:
+            print("Erreur : Git n'est pas installé sur votre système.")
+        except subprocess.CalledProcessError:
+            print("Une erreur s'est produite lors de l'exécution de la commande Git.")
+        except Exception as e:
+            print(f"Une erreur inattendue s'est produite : {e}")
+
+        
 
