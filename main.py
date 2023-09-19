@@ -67,4 +67,47 @@ class Dossier_Fichier:
             print(f"Une erreur inattendue s'est produite : {e}")
 
         
+    def main(self):
+        dossier = Dossier_Fichier("monProject")
+        dossier.create_git_commit('dossier créé')
+        dossier.create_dossier('data')
+        dossier.create_dossier('docs')
+        dossier.create_dossier("models")
+        dossier.create_dossier("notebooks")
+        dossier.create_dossier("reports")
+        dossier.create_dossier("src")
+        dossier.create_git_commit('sous dossier créé')
 
+        dossier.create_dossier('cleaned', "/data" )
+        dossier.create_dossier('raw', "/data" )
+        dossier.create_dossier('processed', "/data" )
+
+        dossier.create_git_commit('sous sous dossier créé')
+
+        dossier.create_fichier('utils','.y', '/src')
+        dossier.create_fichier('process','.py', '/src')
+        dossier.create_fichier('train','.py', '/src')
+        dossier.create_fichier('main','.ipynb', '/notebooks')
+
+        dossier.create_git_commit('fichier de code créé')
+
+        dossier.create_fichier('LICENSE','', '')
+        dossier.create_fichier('makefile','', '')
+        dossier.create_fichier('readme','.md', '')
+        dossier.create_fichier('requirements','.txt', '')
+ 
+
+        dossier.initialize_git_repository()
+
+        dossier.create_git_commit('fin du dit project')
+
+
+if __name__ == "__main__":
+    Dossier_Fichier("").main()
+
+
+    
+    
+
+
+    
