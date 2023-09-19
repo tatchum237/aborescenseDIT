@@ -1,6 +1,7 @@
 # TATCHUM DEFO MICHEL ULRICH MASTER2 IA DIT
 import os
 import nbformat
+import subprocess
 
 class Dossier_Fichier:
 
@@ -29,6 +30,21 @@ class Dossier_Fichier:
             with open(code_file_path, 'w') as code_file:
                 nbformat.write(notebook, code_file)
   
+    def initialize_git_repository(self):
+        try:
+        # Vérifier si Git est installé et accessible
+            subprocess.run(["git", "--version"], check=True)
+
+        # Initialiser un dépôt Git dans le chemin spécifié
+            subprocess.run(["git", "init", self.project_root], check=True)
+            print(f"Le dépôt Git a été initialisé dans '{self.project_root}'.")
+
+        except FileNotFoundError:
+            print("Erreur : Git n'est pas installé sur votre système.")
+        except subprocess.CalledProcessError:
+            print("Une erreur s'est produite lors de l'exécution de la commande Git.")
+        except Exception as e:
+            print(f"Une erreur inattendue s'est produite : {e}")
     
 
 
